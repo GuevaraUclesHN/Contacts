@@ -1,0 +1,24 @@
+<app-filter-contact (filterChanged)="aplicarFiltro($event)"></app-filter-contact>
+
+<button (click)="addContact()" class="btn btn-success col-sm-3 ">Añadir Contacto</button>
+
+
+<div class="row"> 
+    <div  (click)="onClick(contact);" class="card col-sm-5 my-1 mx-1" *ngFor="let contact of filteredContacts">
+      <div class="card-body">
+        <h2 class="card-title">
+            {{contact.title}}   {{contact.name}}
+        </h2>
+      </div>
+</div>
+</div>
+<div *ngIf="showContactDetails" class="card col-sm-7 my-1 mx-4 " >
+    <h3>{{ selectedContact.title }} {{ selectedContact.name }}</h3>
+    <p>Correo: {{ selectedContact.email }}</p>
+    <p>Teléfono: {{ selectedContact.phone }}</p>
+    <button (click)="deleteContact()" class="btn btn-danger" >Eliminar Contacto</button>
+</div>
+
+<div *ngIf="mostrarComponenteAgregar">
+    <app-add-contacts (contactAdded)="saveContact($event)"></app-add-contacts>
+</div>
